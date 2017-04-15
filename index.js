@@ -42,7 +42,7 @@ const options = {
 }
 
 app.get("/:img", (req, res) => {
-	fs.readDir("uploads", (err, files) => {
+	fs.readdir("uploads", (err, files) => {
 		files.forEach( file => {
 			if(file.startsWith(req.params.img)) {
 				res.sendFile(file, options, err => {
