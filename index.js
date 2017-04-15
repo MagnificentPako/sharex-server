@@ -7,7 +7,7 @@ var app = express()
 
 app.get("/", (req, res) => {
 	res.send(`
-	<form action='/' method='post' enctype='multipart/formdata'>
+	<form action='/' method='post' enctype='multipart/form-data'>
 		<input name="file" type="file">
 		<input name="username" type="text">
 		<input name="password" type="password">
