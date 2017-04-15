@@ -23,12 +23,34 @@ app.get('/', (req, res) => {
 
 app.post('/', upload.single('file'), (req, res) => {
 	// res.send(JSON.stringify(req.body) + "\n" + JSON.stringify(req.file))
-  const newpath = 'uploads/' + randomstring.generate(12) + '.' + mime.extension(req.file.mimetype)
+  	const name = randomstring.generate(6)
+	const newpath = 'uploads/' + name + '.' + mime.extension(req.file.mimetype)
   fs.writeFile(newpath, req.file.buffer, (err) => {
     if (err) throw err
   })
 
-  res.send(config.basePath + newpath)
+  res.send(config.basePath + name)
+})
+
+const options = {
+	root: __dirname + "/uploads/",
+	dotfiles: "eny",
+	headers: {
+		"x-timestamp": Date.now(),
+		"x-sent": true
+	}
+}
+
+app.get("/:img", (req, res) => {
+	fs.readDir("uploads", (err, files) => {
+		files.forEach( file => {
+			if(file.startsWith(req.params.img)) {
+				res.sendFile(file, options, err => {
+					throw err;
+				})
+			}
+		})
+	})
 })
 
 app.listen(6969)
