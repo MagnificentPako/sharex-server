@@ -12,7 +12,7 @@ var uploadStorage = multer.diskStorage({
 	}
 })
 
-var upload = mutler({ storage: uploadStorage })
+var upload = multer({ storage: uploadStorage })
 
 var app = express()
 
