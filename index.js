@@ -5,6 +5,9 @@ app.get("/", (req, res) => {
 	res.send(`
 	<form method='post' enctype='multipart/formdata'>
 		<input name="file" type="file">
+		<input name="username" type="text">
+		<input name="password" type="password">
+		<input type="submit">
 	</form>
 	`)
 })
