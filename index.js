@@ -3,7 +3,7 @@ var multer = require("multer")
 var randomstring = require("randomstring")
 var mime = require("mime")
 
-var upload = multer.diskStorage({
+var uploadStorage = multer.diskStorage({
 	destination: (req, file, cb) => {
 	  cb(null, "/tmp/my-uploads")
 	},
@@ -11,6 +11,8 @@ var upload = multer.diskStorage({
 		cb(null, randomstring(8),".", mime.extension(file.mimetype))
 	}
 })
+
+var upload = mutler({ storage: uploadStorage })
 
 var app = express()
 
