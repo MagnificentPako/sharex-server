@@ -8,7 +8,7 @@ var uploadStorage = multer.diskStorage({
 	  cb(null, "/tmp/my-uploads")
 	},
 	filename: (req, file ,cb) => {
-		cb(null, randomstring(8),".", mime.extension(file.mimetype))
+		cb(null, randomstring.generate(12),".", mime.extension(file.mimetype))
 	}
 })
 
