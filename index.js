@@ -46,7 +46,7 @@ app.get("/:img", (req, res) => {
 		files.forEach( file => {
 			if(file.startsWith(req.params.img)) {
 				res.sendFile(file, options, err => {
-					throw err;
+					if (err) throw err;
 				})
 			}
 		})
