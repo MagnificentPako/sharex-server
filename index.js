@@ -5,8 +5,6 @@ var upload = multer({ dest: "uploads/" })
 
 var app = express()
 
-app.use(express.bodyParser())
-
 app.get("/", (req, res) => {
 	res.send(`
 	<form action='/' method='post' enctype='multipart/formdata'>
