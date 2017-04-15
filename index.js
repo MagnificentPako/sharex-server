@@ -34,7 +34,7 @@ app.post('/', upload.single('file'), (req, res) => {
 
 const options = {
 	root: __dirname + "/uploads/",
-	dotfiles: "eny",
+	dotfiles: "deny",
 	headers: {
 		"x-timestamp": Date.now(),
 		"x-sent": true
