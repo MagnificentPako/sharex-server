@@ -1,20 +1,12 @@
-var express = require("express")
-var multer = require("multer")
-var randomstring = require("randomstring")
-var mime = require("mime")
+const express = require("express")
+const multer = require("multer")
+const randomstring = require("randomstring")
+const mime = require("mime")
+const fs = require("fs")
 
-var uploadStorage = multer.diskStorage({
-	destination: (req, file, cb) => {
-	  cb(null, "/tmp/my-uploads")
-	},
-	filename: (req, file ,cb) => {
-		cb(null, randomstring.generate(12),".", mime.extension(file.mimetype))
-	}
-})
+const upload = multer()
 
-var upload = multer({ storage: uploadStorage })
-
-var app = express()
+const app = express()
 
 app.get("/", (req, res) => {
 	res.send(`
@@ -29,6 +21,8 @@ app.get("/", (req, res) => {
 
 app.post("/", upload.single("file"), (req, res) => {
 	res.send(JSON.stringify(req.body) + "\n" + JSON.stringify(req.file))
+	const newpath = "uploads/" + randomstring.generate(12) + "." + mime.extension(req.file.mimetype)
+	
 })
 
 app.listen(6969)
