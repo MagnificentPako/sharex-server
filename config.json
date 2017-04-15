@@ -1,3 +1,6 @@
 {
-	"basePath": "https://i.niobium.me/"
+	"basePath": "https://i.niobium.me/",
+	"users": {
+		"user": "password"
+	}
 }
